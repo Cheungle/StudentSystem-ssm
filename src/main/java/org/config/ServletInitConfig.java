@@ -1,6 +1,5 @@
 package org.config;
 
-import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ServletInitConfig extends AbstractAnnotationConfigDispatcherServletInitializer {

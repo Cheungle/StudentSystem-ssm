@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: je
+Build-Jdk: Oracle OpenJDK 1.8.0_481 - aarch64
+
