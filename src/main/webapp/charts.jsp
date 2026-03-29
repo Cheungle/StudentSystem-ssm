@@ -125,8 +125,8 @@
               <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>Timetable & Grades </a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                   <li><a href="course.jsp">Course Schedule</a></li>
-                  <li><a href="test.jsp">Test Schedule</a></li>
-                  <li><a href="grade.jsp">Grade</a></li>
+                  <li><a href="test.jsp?info=test">Test Schedule</a></li>
+                  <li><a href="test.jsp?info=grade">Grade</a></li>
                 </ul>
               </li>
               <li class="active"><a href="charts.jsp"> <i class="fa fa-bar-chart"></i>Analyze</a></li>

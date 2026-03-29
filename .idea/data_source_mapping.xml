@@ -2,6 +2,7 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/org/dao/CoursePlanDao.java" value="07445645-fac5-4fe8-ba04-0c8038550d10" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/dao/ExamDao.java" value="07445645-fac5-4fe8-ba04-0c8038550d10" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/dao/ScDao.java" value="07445645-fac5-4fe8-ba04-0c8038550d10" />
   </component>
 </project>

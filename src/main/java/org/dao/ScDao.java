@@ -1,18 +1,19 @@
 package org.dao;
 
 import org.apache.ibatis.annotations.*;
-import org.entity.*;
 import org.entity.DTO.QueryStudentDTO;
+import org.entity.VO.GradeInfoVO;
 import org.entity.VO.TimetableVO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Mapper
 public interface ScDao {
 
     @Select("select count(*) from course_choose where id_student= #{id} and academic_year= #{academicYear} and semester=#{semester}")
-    public int countCourseOfOne(QueryStudentDTO queryStudentDTO);
+    int countCourseOfOne(QueryStudentDTO queryStudentDTO);
 
     @Select("select count(credit) from course_choose " +
             "where id_student= #{id} and academic_year= #{academicYear} and semester=#{semester}")
@@ -35,6 +36,9 @@ public interface ScDao {
     @Select("select id_student from course_choose where id_plan = #{courseId}")
     Set<Integer> getSelectedStudentsByCourseId(int courseId);
 
+    @Select("select id_plan from course_choose where id_student = #{id} and academic_year= #{academicYear} and semester= #{semester}")
+    Set<Integer> getSelectedCoursesByStudentId(QueryStudentDTO queryStudentDTO);
+
     @Insert("INSERT INTO course_choose (id_student, id_plan, course_name, credit, academic_year, semester) " +
             "SELECT #{studentId}, cp.id_plan, cp.course_name, cp.credit, cp.academic_year, cp.semester " +
             "FROM course_plan cp WHERE cp.id_plan = #{courseId}")
@@ -45,4 +49,12 @@ public interface ScDao {
 
     @Delete("DELETE FROM course_choose WHERE id_plan = #{courseId} AND id_student = #{studentId}")
     void cancelCourseSelection(@Param("courseId") int courseId, @Param("studentId") int studentId);
+
+    @Select("SELECT course_name, credit, grade FROM course_choose WHERE id_student = #{id} AND academic_year = #{academicYear} AND semester = #{semester}")
+    List<GradeInfoVO> getCoursesGrade(QueryStudentDTO queryStudentDTO);
+
+    @Select("select course_name,academic_year,semester,grade,gpa,credit " +
+            "from course_choose " +
+            "where id_student=#{id} and (academic_year!= #{academicYear} or semester!= #{semester}) ")
+    List<GradeInfoVO> getCoursesPastGrade(QueryStudentDTO queryStudentDTO);
 }

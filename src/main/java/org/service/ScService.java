@@ -2,11 +2,14 @@ package org.service;
 
 import org.common.Result;
 import org.entity.DTO.QueryStudentDTO;
+import org.entity.VO.GradeInfoVO;
 import org.entity.VO.TimetableVO;
 import org.entity.courseChoose;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface ScService {
@@ -44,4 +47,8 @@ public interface ScService {
 
     /*前端轮询查选课结果*/
     public Result getSelectResult(int idPlan, int idStudent);
+
+    public List<GradeInfoVO> getCoursesGrade(QueryStudentDTO queryStudentDTO);
+
+    public Map<String,List<GradeInfoVO>> getCoursesPastGrade(QueryStudentDTO queryStudentDTO);
 }

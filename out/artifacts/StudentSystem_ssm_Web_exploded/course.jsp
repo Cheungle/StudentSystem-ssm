@@ -152,8 +152,8 @@
                         class="icon-grid"></i>Timetable & Grades </a>
                     <ul id="exampledropdownDropdown" class="collapse.in list-unstyled ">
                         <li class="active"><a href="course.jsp">Course Schedule</a></li>
-                        <li><a href="test.jsp">Test Schedule</a></li>
-                        <li><a href="grade.jsp">Grade</a></li>
+                        <li><a href="test.jsp?info=test">Test Schedule</a></li>
+                        <li><a href="test.jsp?info=grade">Grade</a></li>
                     </ul>
                 </li>
                 <li><a href="charts.jsp"> <i class="fa fa-bar-chart"></i>Analyze</a></li>
@@ -645,6 +645,7 @@
                 $("#chooseBtn").addClass("disappear");
                 $("#backBtn").removeClass("disappear");
                 $("#selection-title").text(academicYear + " " + semester + "可选课列表");
+                $(".term").addClass("disappear");
                 totalPages = res.pages;
                 renderTable(res.list);    // 渲染列表
                 renderPageBar(res);       // 渲染分页条
@@ -781,6 +782,7 @@
         $(".selections").addClass("disappear");
         $("#chooseBtn").removeClass("disappear");
         $("#backBtn").addClass("disappear");
+        $(".term").removeClass("disappear");
     }
     /* 轮询选课结果 */
     function startPolling(idPlan,idStudent){

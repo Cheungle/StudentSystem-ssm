@@ -37,7 +37,6 @@ public class StockRedisFixTask {
             log.info("当前非选课时间段，库存定时同步已关闭");
             return;
         }
-
         log.info("===== 开始凌晨库存对账 + 同步 =====");
 
         // 获取本学期开放课程Id

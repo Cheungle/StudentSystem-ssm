@@ -5,10 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.common.Result;
 import org.entity.DTO.QueryStudentDTO;
 import org.entity.VO.CourseListVO;
+import org.entity.VO.GradeInfoVO;
+import org.entity.VO.TestInfoVO;
 import org.entity.VO.TimetableVO;
 import org.entity.coursePlan;
 import org.entity.courseChoose;
 import org.service.CoursePlanService;
+import org.service.ExamService;
 import org.service.ScService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +34,8 @@ public class StudentCourseController {
     @Autowired
     public CoursePlanService coursePlanService;
 
+    @Autowired
+    public ExamService examService;
 
     @RequestMapping("/getGradeOfOne")
     public List<courseChoose> getGradeOfOne(@RequestBody QueryStudentDTO queryStudentDTO) {
@@ -94,5 +99,24 @@ public class StudentCourseController {
     @RequestMapping("/getSelectResult")
     public Result getSelectResult(@RequestParam int idPlan, @RequestParam int idStudent) {
         return scService.getSelectResult(idPlan, idStudent);
+    }
+    @RequestMapping("/getCoursesTest")
+    public List<TestInfoVO> getCoursesTest(@RequestBody QueryStudentDTO queryStudentDTO){
+        return examService.getCoursesTest(queryStudentDTO);
+    }
+
+    @RequestMapping("/getCoursesPastTest")
+    public Map<String, List<TestInfoVO>> getCoursesPastTest(@RequestBody QueryStudentDTO queryStudentDTO){
+        return examService.getCoursesPastTest(queryStudentDTO);
+    }
+
+    @RequestMapping("/getCoursesGrade")
+    public List<GradeInfoVO> getCoursesGrade(@RequestBody QueryStudentDTO queryStudentDTO){
+        return scService.getCoursesGrade(queryStudentDTO);
+    }
+
+    @RequestMapping("/getCoursesPastGrade")
+    public Map<String,List<GradeInfoVO>> getCoursesPastGrade(@RequestBody QueryStudentDTO queryStudentDTO){
+        return scService.getCoursesPastGrade(queryStudentDTO);
     }
 }

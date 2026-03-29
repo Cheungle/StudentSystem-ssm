@@ -25,13 +25,13 @@ public class StockSyncToDBTask {
      */
     @Scheduled(fixedRate = 30000)
     public void syncRedisStockToDB() {
-        log.info("=======定时同步库存开始========");
         // 非选课期间直接退出，不执行定时任务
         TermDTO termDTO= coursePlanDao.getTermWithOpenSelection();
         if(termDTO == null){
             log.info("当前非选课时间段，库存定时同步已关闭");
             return;
         }
+        log.info("=======定时同步库存开始========");
         // 从DB获取所有有效的课程 ID 再从redis获取对应的 库存
         List<Integer> courseIdList =
                 coursePlanDao.findThisTermValidCourseIds(termDTO.getAcademicYear(), termDTO.getSemester());

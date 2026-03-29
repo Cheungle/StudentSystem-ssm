@@ -27,10 +27,6 @@ public class MQConfig {
     public static final String ROUTING_KEY = "course.select";
     public static final String DLX_QUEUE = "dlx.queue";
 
-//    private static final String host = "localhost";
-//    private static final int port = 5672;
-//    private static final String username = "guest";
-//    private static final String password = "guest";
 
     @Value("${mq.host}")
     private String host;

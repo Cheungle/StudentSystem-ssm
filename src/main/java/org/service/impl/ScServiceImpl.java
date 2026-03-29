@@ -7,6 +7,8 @@ import org.common.Result;
 import org.dao.CoursePlanDao;
 import org.dao.ScDao;
 import org.entity.DTO.QueryStudentDTO;
+import org.entity.VO.GradeInfoVO;
+import org.entity.VO.TestInfoVO;
 import org.entity.VO.TimetableVO;
 import org.entity.courseChoose;
 import org.handler.exception.LuaException;
@@ -17,7 +19,10 @@ import org.springframework.stereotype.Service;
 import org.util.RedisUtil;
 import org.util.mq.MQProducer;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -192,5 +197,20 @@ public void cancelDataToDB(int idPlan, int idStudent) {
             res.setMsg(split[1]);
         }
         return res;
+    }
+
+    @Override
+    public List<GradeInfoVO> getCoursesGrade(QueryStudentDTO queryStudentDTO) {
+        return scDao.getCoursesGrade(queryStudentDTO);
+    }
+
+    @Override
+    public Map<String, List<GradeInfoVO>> getCoursesPastGrade(QueryStudentDTO queryStudentDTO) {
+        List<GradeInfoVO> testInfoVOS = scDao.getCoursesPastGrade(queryStudentDTO);
+        Map<String, List<GradeInfoVO>> groupMap = testInfoVOS.stream()
+                .collect(Collectors.groupingBy(vo ->
+                        vo.getAcademicYear() + " " + vo.getSemester()
+                ));
+        return groupMap;
     }
 }
