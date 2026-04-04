@@ -13,12 +13,13 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@ComponentScan({"org.service","org.dao","org.util.mq","org.util.scheduledTask"})
+@ComponentScan({"org.service","org.dao","org.util.mq","org.util.scheduledTask","org.util.aop"})
 @Import({JDBCConfig.class,MyBatisConfig.class,RedisConfig.class, RedisUtil.class, ThreadPoolConfig.class, MQConfig.class})
 @PropertySource("classpath:jdbc.properties")
 @EnableTransactionManagement
 @EnableScheduling
 @EnableAsync
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class SpringConfig {
     @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {

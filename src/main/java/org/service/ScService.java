@@ -14,41 +14,41 @@ import java.util.Map;
 
 public interface ScService {
 
-    public double getAverageGPA();
+    double getAverageGPA();
 
     /*按学生id和学期查找课程*/
-    public List<TimetableVO> getTimetableOfTermByStudent(QueryStudentDTO queryStudentDTO);
+    List<TimetableVO> getTimetableOfTermByStudent(QueryStudentDTO queryStudentDTO);
 
     /*按学生id和学期查找成绩*/
-    public List<courseChoose> getGradeOfOne(QueryStudentDTO queryStudentDTO);
+    List<courseChoose> getGradeOfOne(QueryStudentDTO queryStudentDTO);
 
     /*按课程id查找成绩*/
-    public List<courseChoose> getGradeByCourseID(int id);
+    List<courseChoose> getGradeByCourseID(int id);
 
     /*按学生id和学期计算课程数*/
-    public int countCourseOfOne(QueryStudentDTO queryStudentDTO);
+    int countCourseOfOne(QueryStudentDTO queryStudentDTO);
 
     /*按学生id和学期计算学分*/
-    public int countCreditOfTerm(QueryStudentDTO queryStudentDTO);
+    int countCreditOfTerm(QueryStudentDTO queryStudentDTO);
 
     /*按学生id和学期计算以前学期学分*/
-    public int countBeforeCreditOfOne(QueryStudentDTO queryStudentDTO);
+    int countBeforeCreditOfOne(QueryStudentDTO queryStudentDTO);
 
     /*展示今天的课表*/
-    public List<TimetableVO> getTodayCourse(QueryStudentDTO queryStudentDTO);
+    List<TimetableVO> getTodayCourse(QueryStudentDTO queryStudentDTO);
 
     /*学生选课*/
-    public void selectOneCourse(int idPlan, int idStudent);
+    void selectOneCourse(int idPlan, int idStudent);
 
     /*学生退课*/
-    public Result cancelOneCourse(int idPlan, int idStudent);
+    Result cancelOneCourse(int idPlan, int idStudent);
     /*判断该学生是否已选过该课程*/
-//    public boolean checkIfSelected(int courseId,int studentId);
+//    boolean checkIfSelected(int courseId,int studentId);
 
     /*前端轮询查选课结果*/
-    public Result getSelectResult(int idPlan, int idStudent);
+    Result getSelectResult(int idPlan, int idStudent);
 
-    public List<GradeInfoVO> getCoursesGrade(QueryStudentDTO queryStudentDTO);
+    List<GradeInfoVO> getCoursesGrade(QueryStudentDTO queryStudentDTO);
 
-    public Map<String,List<GradeInfoVO>> getCoursesPastGrade(QueryStudentDTO queryStudentDTO);
+    Map<String,List<GradeInfoVO>> getCoursesPastGrade(QueryStudentDTO queryStudentDTO);
 }

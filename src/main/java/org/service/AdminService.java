@@ -7,11 +7,11 @@ import java.util.List;
 public interface AdminService {
 
     /*查询管理员列表*/
-    public List<admin> queryAllAdmins();
+    List<admin> queryAllAdmins();
 
     /*增加管理员*/
-    public boolean addAdmin(admin admin);
+    boolean addAdmin(admin admin);
 
     /*删除管理员*/
-    public boolean deleteAdmin(int id);
+    boolean deleteAdmin(int id);
 }

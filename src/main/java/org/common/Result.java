@@ -16,6 +16,13 @@ public class Result {
         r.setData(null);
         return r;
     }
+    public static Result success(String msg){
+        Result r = new Result();
+        r.setCode(200);
+        r.setMsg(msg);
+        r.setData(null);
+        return r;
+    }
     public static Result success(Object data){
         Result r = new Result();
         r.setCode(200);

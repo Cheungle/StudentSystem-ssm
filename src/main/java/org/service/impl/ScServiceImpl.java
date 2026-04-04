@@ -116,14 +116,13 @@ public class ScServiceImpl implements ScService {
     public void selectOneCourse(int idPlan, int idStudent) {
         try {
             // lua判断库存是否足够
-            log.info("开始选课操作");
             int redisSuccess = redisUtil.selectCourse(idPlan, idStudent);
             switch (redisSuccess){
                 case 0:
                     log.info("学生{}已选{}课程", idStudent, idPlan);
                     // 异步同步库存到数据库
                     mqProducer.sendSelectMsg(idStudent, idPlan);
-                    redisUtil.setSelectResult(idPlan, idStudent, true, "");
+                    redisUtil.setSelectResult(idPlan, idStudent, true, "选课成功");
                     break;
                 case 1:
                     log.info("学生{}已选{}课程", idStudent, idPlan);
@@ -143,16 +142,13 @@ public class ScServiceImpl implements ScService {
 
     @Override
     public Result cancelOneCourse(int idPlan, int idStudent) {
-        log.info("开始退课操作");
         int redisSuccess = redisUtil.cancelCourse(idPlan, idStudent);
         switch (redisSuccess){
             case 0:
-                log.info("学生{}取消{}课程", idStudent, idPlan);
                 // 同步到数据库
                 cancelDataToDB(idPlan, idStudent);
                 return Result.success("退课成功");
             case 1:
-                log.info("学生{}未选过{}课程", idStudent, idPlan);
                 return Result.fail("学生未选过该课程");
             default:
                 throw new LuaException("退课Lua脚本异常");
@@ -185,13 +181,15 @@ public void cancelDataToDB(int idPlan, int idStudent) {
     public Result getSelectResult(int idPlan, int idStudent) {
         Result res = new Result();
         String result = redisUtil.getSelectResult(idPlan, idStudent);
-        log.info("学生{}选课结果{}", idStudent, result);
         if (result == null) {
             res.setCode(100);
             return res;
         }
         String[] split = result.split(":");
-        if (split[0].equals("success")) res.setCode(200);
+        if (split[0].equals("success")) {
+            res.setCode(200);
+            res.setMsg(split[1]);
+        }
         if (split[0].equals("fail")) {
             res.setCode(500);
             res.setMsg(split[1]);

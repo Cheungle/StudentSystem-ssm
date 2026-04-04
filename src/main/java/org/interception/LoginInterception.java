@@ -38,10 +38,10 @@ public class LoginInterception implements HandlerInterceptor {
             return true;
         }
         log.info("当前请求：", requestURI);
-        //1、从请求头中获取令牌
+        // 从请求头中获取令牌
         String token = request.getHeader(jwtUtil.getTokenName());
 
-        //2、校验令牌
+        // 校验令牌
         log.info("jwt校验:{}", token);
         // 验证令牌合法性
         if (!JWTUtil.validateToken(jwtUtil.getSecretKey(), token)) {
@@ -56,7 +56,6 @@ public class LoginInterception implements HandlerInterceptor {
 
         // 将用户id存储到ThreadLocal
         BaseContext.setCurrentId(userId);
-        //3、通过，放行
         return true;
     }
 

@@ -87,7 +87,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version> <!-- 检查最新版本 -->
+            <version>1.18.34</version>
             <scope>provided</scope>
         </dependency>
 
@@ -126,14 +126,14 @@
             <version>1.70</version>
         </dependency>
 
-        <!-- Spring Data Redis 核心依赖（整合 Redis 关键） -->
+        <!-- Spring Data Redis 核心依赖（整合 Redis） -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>2.7.8</version> <!-- 适配 Spring 5.x 版本，可根据自己的 Spring 版本调整 -->
         </dependency>
 
-        <!-- Jedis 客户端（SSM 中常用，替代 Lettuce） -->
+        <!-- Jedis 客户端 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -161,12 +161,12 @@
             <version>1.4.6</version>
         </dependency>
         <!--redisson-->
-<!--        <dependency>-->
-<!--            <groupId>org.redisson</groupId>-->
-<!--            <artifactId>redisson</artifactId>-->
-<!--            <version>3.23.5</version>-->
-<!--        </dependency>-->
-
+        <!--        <dependency>-->
+        <!--            <groupId>org.redisson</groupId>-->
+        <!--            <artifactId>redisson</artifactId>-->
+        <!--            <version>3.23.5</version>-->
+        <!--        </dependency>-->
+        <!--reabbitMQ-->
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-amqp</artifactId>
@@ -177,7 +177,17 @@
             <artifactId>spring-rabbit</artifactId>
             <version>2.3.14</version>
         </dependency>
-
+        <!--aop-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.4</version>
+        </dependency>
     </dependencies>
 
 </project>
